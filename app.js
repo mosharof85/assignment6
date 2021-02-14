@@ -4,6 +4,7 @@ const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
+const modal = document.querySelector('.modal');
 // selected image 
 let sliders = [];
 
@@ -46,7 +47,8 @@ const getImages = (query) => {
             searchBtn.removeAttribute('disabled');
             searchBtn.innerText = 'Search';
 
-            alert('No image found');
+            modal.querySelector('.message').innerText = 'No Image found';
+            modal.classList.add('active');
             return;
           }
 
@@ -57,7 +59,10 @@ const getImages = (query) => {
           searchBtn.innerText = 'Search';
         })
         .catch(err => {
-          console.log(err);
+
+          modal.querySelector('.message').innerText = err;
+          modal.classList.add('active');
+
           //put search button on normal mode
           searchBtn.removeAttribute('disabled');
           searchBtn.innerText = 'Search';
@@ -83,7 +88,8 @@ var timer
 const createSlider = () => {
   // check slider image length
   if (sliders.length < 2) {
-    alert('Select at least 2 image.')
+    modal.querySelector('.message').innerText = 'Select at least 2 image.';
+    modal.classList.add('active');
     return;
   }
 
@@ -91,7 +97,8 @@ const createSlider = () => {
   const duration = document.getElementById('doration').value || 1000;
 
   if(duration<0){
-    alert('Slider changing duration can\'t be negetive');
+    modal.querySelector('.message').innerText = 'Slider changing duration can\'t be negetive';
+    modal.classList.add('active');
     return;
   }
 
@@ -174,4 +181,11 @@ document.getElementById('search').addEventListener('keyup', (e)=>{
 
 sliderBtn.addEventListener('click', function () {
   createSlider()
+})
+
+
+//eventlistener for Popup close button
+
+document.querySelector('.modal .modal-container .close').addEventListener('click', function (e) {
+    this.closest('.modal').classList.remove('active');
 })
