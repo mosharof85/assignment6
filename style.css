@@ -83,19 +83,6 @@ img {
 
 .modal.active{
   display: flex;
-  animation: modal-open .3s ease-in forwards;
-}
-
-@keyframes modal-open {
-  0%{
-    transform: translateY(-50px);
-    opacity: .75;
-  }
-
-  100%{
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .modal .modal-container{
