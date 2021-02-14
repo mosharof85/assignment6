@@ -169,6 +169,7 @@ const searchHandler = ()=>{
 
 searchBtn.addEventListener('click', searchHandler);
 document.getElementById('search').addEventListener('keyup', (e)=>{
+
   if (e.key === 'Enter') {
 
     //Checking where search is already running
@@ -188,4 +189,12 @@ sliderBtn.addEventListener('click', function () {
 
 document.querySelector('.modal .modal-container .close').addEventListener('click', function (e) {
     this.closest('.modal').classList.remove('active');
+})
+
+document.addEventListener('keyup', (e)=>{
+    if(e.key === 'Escape'){
+      if(modal.classList.contains('active')){
+        modal.classList.remove('active');
+      }
+    }
 })
